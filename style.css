@@ -1,0 +1,225 @@
+/* ---------- Basic setup ---------- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --ink: #1b2a41;        /* dark navy for text */
+  --paper: #f3f6fa;      /* page background */
+  --card: #ffffff;
+  --line: #d5dde8;
+  --highlight: #ffd84d;  /* highlighter yellow accent */
+  --done: #6b7a90;
+}
+
+body {
+  font-family: Georgia, "Times New Roman", serif;
+  background: var(--paper);
+  color: var(--ink);
+  line-height: 1.6;
+}
+
+/* ---------- Header and footer ---------- */
+header {
+  text-align: center;
+  padding: 40px 20px 20px;
+}
+
+header h1 {
+  font-size: 2.6rem;
+  display: inline-block;
+  /* highlighter effect behind the title */
+  background: linear-gradient(transparent 55%, var(--highlight) 55%);
+}
+
+header p {
+  margin-top: 10px;
+  color: var(--done);
+}
+
+footer {
+  text-align: center;
+  padding: 30px 20px;
+  color: var(--done);
+  font-size: 0.9rem;
+}
+
+/* ---------- Layout ---------- */
+main {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+  display: grid;
+  gap: 20px;
+}
+
+/* tasks take the full width, timer and notes sit side by side on big screens */
+#tasks {
+  grid-column: 1 / -1;
+}
+
+@media (min-width: 700px) {
+  main {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+section {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 24px;
+}
+
+h2 {
+  font-size: 1.3rem;
+  margin-bottom: 16px;
+}
+
+/* ---------- Form elements ---------- */
+input, select, textarea, button {
+  font-family: inherit;
+  font-size: 1rem;
+}
+
+input[type="text"],
+input[type="number"],
+select,
+textarea {
+  padding: 10px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  color: var(--ink);
+}
+
+textarea {
+  width: 100%;
+  resize: vertical;
+}
+
+button {
+  padding: 10px 18px;
+  border: 2px solid var(--ink);
+  border-radius: 6px;
+  background: var(--highlight);
+  color: var(--ink);
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #ffe483;
+}
+
+button.secondary {
+  background: var(--card);
+}
+
+button.secondary:hover {
+  background: var(--paper);
+}
+
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid var(--ink);
+  outline-offset: 2px;
+}
+
+/* ---------- Tasks ---------- */
+#task-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+#task-input {
+  flex: 1;
+  min-width: 200px;
+}
+
+#task-count {
+  margin: 14px 0 6px;
+  color: var(--done);
+  font-size: 0.95rem;
+}
+
+#task-list {
+  list-style: none;
+}
+
+#task-list li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+#task-list li:last-child {
+  border-bottom: none;
+}
+
+#task-list .task-text {
+  flex: 1;
+}
+
+#task-list .subject {
+  font-size: 0.85rem;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 2px 8px;
+}
+
+#task-list li.done .task-text {
+  text-decoration: line-through;
+  color: var(--done);
+}
+
+.delete-btn {
+  padding: 4px 10px;
+  background: var(--card);
+  border-width: 1px;
+}
+
+/* ---------- Timer ---------- */
+#time-display {
+  font-size: 4rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 16px;
+  font-variant-numeric: tabular-nums;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+#timer label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 0.95rem;
+}
+
+#minutes-input {
+  width: 100px;
+}
+
+#session-count {
+  margin-top: 14px;
+  color: var(--done);
+}
+
+/* ---------- Notes ---------- */
+#save-status {
+  margin-top: 8px;
+  font-size: 0.9rem;
+  color: var(--done);
+}
